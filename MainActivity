@@ -1,0 +1,27 @@
+public class MainActivity extends AppCompatActivity {
+    private ImageView botaoJogar;
+    private String[] opcao = {"cara", "coroa"}; //índices do arrays, cara 0 - coroa 1
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+     botaoJogar = (ImageView) findViewById(R.id.botaoJogarId);
+
+     botaoJogar.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+      //Gerar número aleatório
+
+             Random randomico = new Random();
+             int numeroAleatorio = randomico.nextInt(2); //colocando o número 2, quer dizer que vamos pegar número de 0 a 2
+                                                         //para que consiliar com nosso indice dos arrays
+             // cara 0 - coroa 1
+             //opcao[numeroAleatorio]; esse array tem os dois valores, e definimos para que ele gere numeros aleatorios, e no intent.putExtra colocamos a key e o que queremos exibir
+             //para passar essa informação para a próxima tela vamos colocar a classe Intent
+             Intent intent = new Intent(MainActivity.this, DetalheActivity.class);
+             intent.putExtra("opcao",  opcao[numeroAleatorio]);
+
+             startActivity( intent );
+         }
+     });
