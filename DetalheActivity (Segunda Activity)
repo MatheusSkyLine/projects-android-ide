@@ -1,0 +1,48 @@
+public class DetalheActivity extends AppCompatActivity {
+    private ImageView imagem;
+    private ImageView botaoVoltar;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detalhe);
+
+     imagem = (ImageView) findViewById(R.id.moedaId);
+     botaoVoltar = (ImageView) findViewById(R.id.botaoVoltarId);
+
+     //dessa forma vamos conseguir recuperar com o que está sendo passado como extra na activity principal
+     Bundle extra = getIntent().getExtras();
+        if( extra != null ){
+
+            String opcaoEscolhida = extra.getString("opcao");
+            //criamos uma string e em seguida recuperamos com o key o que será exibido
+
+            //Vamos criar outro IF para que seja exibido as imagens e dar condições
+
+            if(opcaoEscolhida.equals("cara")) {
+           >> método "equals" ele verifica se a string é igual o que você quer.
+            //imagem cara
+
+             imagem.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.moeda_cara));
+                //metodo getDrawable recebe dois parâmetros o contexto primeiro, que colocamos this e o segundo parÂmetro é o ID do drawable
+
+
+
+            }else {
+
+                //imagem coroa
+
+           imagem.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.moeda_coroa));
+                //dessa forma recuperamos a imagem coroa e de forma randomica se for cara irá aparecer cara, se não aparecera coroa
+
+            }
+
+            }
+
+
+     botaoVoltar.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+
+     startActivity(new Intent(DetalheActivity.this, MainActivity.class));
+         }
+     });
